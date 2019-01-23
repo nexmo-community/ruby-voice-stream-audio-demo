@@ -1,6 +1,6 @@
 # Nexmo Ruby Stream Audio To Call Demo
 
-A demo that streams an audio file to an in-progress phone call with Ruby using Sinatra and the [Nexmo Voice API](LINK).
+A demo that streams an audio file to an in-progress phone call with Ruby using Sinatra and the [Nexmo Voice API](https://developer.nexmo.com/voice/voice-api/overview).
 
 ### Usage
 
