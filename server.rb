@@ -8,10 +8,10 @@ Dotenv.load
 
 # Set Up Nexmo Credentials
 client = Nexmo::Client.new(
-  api_key: ENV['api_key'],
-  api_secret: ENV['api_secret'],
-  application_id: ENV['application_id'],
-  private_key: File.read(ENV['private_key_path'])
+  api_key: ENV['NEXMO_API_KEY'],
+  api_secret: ENV['NEXMO_API_SECRET'],
+  application_id: ENV['NEXMO_APPLICATION_ID'],
+  private_key: File.read(ENV['NEXMO_APPLICATION_PRIVATE_KEY_PATH'])
 )
 
 # ngrok URL Goes Here
@@ -24,8 +24,8 @@ AUDIO_URL = "#{BASE_URL}/voice_api_audio_streaming.mp3"
 get '/new' do
   # Start call
   response = client.calls.create(
-    to: [{ type: 'phone', number: ENV['sender_phone'] }],
-    from: { type: 'phone', number: ENV['recipient_phone'] },
+    to: [{ type: 'phone', number: ENV['NEXMO_NUMBER'] }],
+    from: { type: 'phone', number: ENV['NEXMO_TO_NUMBER'] },
     answer_url: ["#{BASE_URL}/answer"],
     event_url: ["#{BASE_URL}/event"]
   )
