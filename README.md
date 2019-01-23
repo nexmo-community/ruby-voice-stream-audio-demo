@@ -16,4 +16,4 @@ A demo that streams an audio file to an in-progress phone call with Ruby using S
 
 ## License
 
-This sample is released under the [MIT License][LICENSE]
+This sample is released under the [MIT License](LICENSE)
