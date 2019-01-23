@@ -14,8 +14,11 @@ client = Nexmo::Client.new(
   private_key: File.read(ENV['private_key_path'])
 )
 
+# ngrok URL Goes Here
+BASE_URL = ''
+
 # Audio File
-AUDIO_URL = 'http://EXTERNALLY ACCESSIBLE URL HERE/voice_api_audio_streaming.mp3'
+AUDIO_URL = "#{BASE_URL}/voice_api_audio_streaming.mp3"
 
 # Server Routes
 get '/new' do
@@ -23,8 +26,8 @@ get '/new' do
   response = client.calls.create(
     to: [{ type: 'phone', number: ENV['sender_phone'] }],
     from: { type: 'phone', number: ENV['recipient_phone'] },
-    answer_url: ['http://EXTERNALLY ACCESSIBLE URL HERE/answer'],
-    event_url: ['http://EXTERNALLY ACCESSIBLE URL HERE/event']
+    answer_url: ["#{BASE_URL}/answer"],
+    event_url: ["#{BASE_URL}/event"]
   )
   puts response.inspect
 end
@@ -32,7 +35,7 @@ end
 get '/answer' do
     # Provide the Nexmo Call Control Object (NCCO) as JSON to the Nexmo Platform
     content_type :json
-    [{ :action => 'stream', :streamUrl => ['http://EXTERNALLY ACCESSIBLE URL HERE/stream/silent'], :loop => 0 }].to_json
+    [{ :action => 'stream', :streamUrl => ["#{BASE_URL}/stream/silent"], :loop => 0 }].to_json
 end
 
 get '/stream/silent' do
